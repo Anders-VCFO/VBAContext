@@ -50,7 +50,20 @@ You are a Knowledge Graph Health Analyst. Your job is to assess the health of th
    - > 30 days old and still emergent (needs validation or archiving)
    - > 60 days old (critical - validate or remove)
 
-5. **Generate Health Report**
+5. **Check Ingest, IngestionAgent, and CLAUDE.md Directory Structure**
+
+   Make sure both ingest.md and ingestion-agent.md reflect current taxonomy.yaml domains
+   Ingest.md needs to mention all domains in the following sections:
+   - Identify Concepts
+   - Generate Knowledge Node(s) 
+   - Save to Appropriate Location
+   Ingestion-agent.md needs to mention all domains in the following sections:
+   - Capabilities
+   - Node Generation Template
+   - Save to Appropriate Location
+   Claude.md needs to mention all domains in directory structure section. They should be listed under knowledge_base/ as subdirectories.
+
+6. **Generate Health Report**
 
    ```
    # Context OS Health Report

@@ -165,6 +165,25 @@ Briefly explain:
 - Layer 1 (knowledge_base): Individual concepts, reusable across contexts
 - Layer 2 (00_foundation): Strategic documents that compose Layer 1 concepts
 
+## Step 2.5: Check for Existing Knowledge Graph Files
+
+After creating the directory structure, check if the target directory already has taxonomy and ontology files:
+
+1. Check if `_system/knowledge_graph/taxonomy.yaml` AND `_system/knowledge_graph/ontology.yaml` both exist in the target directory
+
+**If BOTH files exist:**
+- Copy `node_template.md` from the context-quickstart plugin `/templates/node_template.md` into `_system/knowledge_graph/node_template.md`
+- Delete the existing `CLAUDE.md` in the target directory root (if it exists)
+- Copy `CLAUDE_MD_STARTER.md` from the context-quickstart plugin `/templates/CLAUDE_MD_STARTER.md` to the target directory root and rename it to `CLAUDE.md`
+- Skip to Step 3.5 (Customize CLAUDE.md) - do NOT run Step 3 or Step 4
+
+"Found existing taxonomy.yaml and ontology.yaml - using your established knowledge graph configuration.
+- Added node_template.md to your knowledge graph folder
+- Created fresh CLAUDE.md navigation guide"
+
+**If either or both files are missing:**
+→ Continue to Step 3 (normal flow)
+
 ## Step 3: Generate CLAUDE.md
 
 Read the template from the context-quickstart plugin: `/templates/CLAUDE_MD_STARTER.md`
@@ -172,6 +191,12 @@ Customize based on their purpose choice.
 Write to CLAUDE.md in the target directory root.
 
 "Created CLAUDE.md - your navigation guide. This tells AI how to use your system. Every session starts here."
+
+## Step 3.5: Customize CLAUDE.md
+
+After CLAUDE.md is created (whether from Step 3 or Step 2.5), customize it based on their purpose choice:
+- Update domain references to match their chosen structure
+- Adjust any placeholder text to fit their context
 
 ## Step 4: Generate Taxonomy & Ontology
 
@@ -219,7 +244,25 @@ In both files, update:
 
 This ensures token-efficient ingestion without runtime directory discovery.
 
-## Step 5: First Content Ingestion
+## Step 5: Clean Up Templates and Setup Files
+
+After all template files have been utilized or moved, delete the templates folder and setup guide from the target directory:
+
+```bash
+rm -rf templates/
+rm -f CLAUDE_CODE_SETUP_GUIDE.md
+```
+
+This removes the starter templates and setup documentation since they've now been applied to their proper locations. The target directory should no longer contain:
+- `templates/CLAUDE_MD_STARTER.md` (now `CLAUDE.md`)
+- `templates/taxonomy_starter.yaml` (now `_system/knowledge_graph/taxonomy.yaml`)
+- `templates/ontology_starter.yaml` (now `_system/knowledge_graph/ontology.yaml`)
+- `templates/node_template.md` (now `_system/knowledge_graph/node_template.md`)
+- `CLAUDE_CODE_SETUP_GUIDE.md` (setup instructions no longer needed)
+
+"Cleaned up setup templates - your context OS is ready to use."
+
+## Step 6: First Content Ingestion
 
 Now ingest content from the source they identified:
 
@@ -242,7 +285,7 @@ The key transformation:
 - Linked to other potential nodes
 - Made it queryable"
 
-## Step 6: Verification & Next Steps
+## Step 7: Verification & Next Steps
 
 "Let's prove this works. Ask me something about what we just added."
 
